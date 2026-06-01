@@ -1,0 +1,35 @@
+{
+  "name": "obsidian-flowmap-mvp",
+  "version": "0.1.0",
+  "description": "MVP Obsidian plugin for YAML-backed interactive flow maps using React Flow.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs --watch",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "typecheck": "tsc -noEmit -skipLibCheck"
+  },
+  "keywords": [
+    "obsidian",
+    "react-flow",
+    "yaml",
+    "diagram",
+    "flowmap"
+  ],
+  "author": "kester mac + ChatGPT handoff MVP",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "builtin-modules": "^3.3.0",
+    "esbuild": "^0.23.0",
+    "obsidian": "latest",
+    "typescript": "^5.5.4",
+    "@types/js-yaml": "^4.0.9"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^1.1.5",
+    "@xyflow/react": "^12.10.2",
+    "js-yaml": "^4.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

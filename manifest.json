@@ -1,0 +1,10 @@
+{
+  "id": "flowmap-mvp",
+  "name": "FlowMap MVP",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Interactive YAML-backed flow maps for Obsidian notes.",
+  "author": "kester mac + ChatGPT handoff MVP",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}

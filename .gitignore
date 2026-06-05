@@ -1,0 +1,12 @@
+node_modules/
+
+# Build output
+main.js
+main.css
+styles.css
+*.map
+
+# Local editor/OS files
+.DS_Store
+.idea/
+.vscode/

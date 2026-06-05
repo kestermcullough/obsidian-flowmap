@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { Node } from '@xyflow/react';
 
 interface Props {
@@ -17,12 +17,12 @@ export function DetailsPanel({ selectedNode, onClose }: Props) {
       <div className="flowmap-details-header">
         <div>
           <div className="flowmap-details-title">{String(data.label ?? selectedNode.id)}</div>
-          {data.type && <div className="flowmap-details-subtitle">{String(data.type)}</div>}
+          {data.type !== undefined && <div className="flowmap-details-subtitle">{String(data.type)}</div>}
         </div>
         <button onClick={onClose} aria-label="Close details">×</button>
       </div>
 
-      {data.detail && <pre className="flowmap-details-text">{String(data.detail)}</pre>}
+      {data.detail !== undefined && <pre className="flowmap-details-text">{String(data.detail)}</pre>}
 
       {links && Object.keys(links).length > 0 && (
         <section>
@@ -42,14 +42,21 @@ export function DetailsPanel({ selectedNode, onClose }: Props) {
           <h4>Data</h4>
           <dl>
             {Object.entries(customData).map(([key, value]) => (
-              <React.Fragment key={key}>
+              <Fragment key={key}>
                 <dt>{key}</dt>
-                <dd>{typeof value === 'object' ? JSON.stringify(value) : String(value)}</dd>
-              </React.Fragment>
+                <dd>{formatDataValue(value)}</dd>
+              </Fragment>
             ))}
           </dl>
         </section>
       )}
     </aside>
   );
+}
+
+function formatDataValue(value: unknown): string {
+  if (value === undefined) return '';
+  if (value === null) return 'null';
+  if (typeof value === 'object') return JSON.stringify(value, null, 2) ?? String(value);
+  return String(value);
 }

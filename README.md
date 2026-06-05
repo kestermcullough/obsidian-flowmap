@@ -54,16 +54,30 @@ For development:
 npm run dev
 ```
 
-Copy or symlink these files into an Obsidian test vault:
+## Install into a local Obsidian vault
 
-```text
-.vault/.obsidian/plugins/flowmap-mvp/
-  main.js
-  manifest.json
-  styles.css   # if emitted separately later; currently CSS is bundled by esbuild
+Build and copy the plugin files into a vault with:
+
+```bash
+npm run install:vault -- "/path/to/your/vault"
 ```
 
-Then enable the plugin in Obsidian settings.
+From WSL, Windows vaults are usually under `/mnt/c/Users/<you>/...`, for example:
+
+```bash
+npm run install:vault -- "/mnt/c/Users/kmccullough/Documents/MyVault"
+```
+
+The installer creates:
+
+```text
+<vault>/.obsidian/plugins/flowmap-mvp/
+  main.js
+  manifest.json
+  styles.css
+```
+
+Then open Obsidian, go to Settings -> Community plugins, and enable **FlowMap MVP**.
 
 ## Why this shape
 

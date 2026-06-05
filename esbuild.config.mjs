@@ -43,5 +43,6 @@ if (watch) {
   await context.dispose();
   if (fs.existsSync('main.css')) {
     fs.copyFileSync('main.css', 'styles.css');
+    fs.rmSync('main.css');
   }
 }

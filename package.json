@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "node esbuild.config.mjs --watch",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "install:vault": "npm run build && node scripts/install-to-vault.mjs",
+    "test": "vitest run",
     "typecheck": "tsc -noEmit -skipLibCheck"
   },
   "keywords": [
@@ -18,12 +20,15 @@
   "author": "kester mac + ChatGPT handoff MVP",
   "license": "MIT",
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.14.9",
+    "@types/react": "^18.3.30",
+    "@types/react-dom": "^18.3.7",
     "builtin-modules": "^3.3.0",
-    "esbuild": "^0.23.0",
-    "obsidian": "latest",
+    "esbuild": "^0.28.0",
+    "obsidian": "^1.13.0",
     "typescript": "^5.5.4",
-    "@types/js-yaml": "^4.0.9"
+    "vitest": "^4.1.8"
   },
   "dependencies": {
     "@dagrejs/dagre": "^1.1.5",

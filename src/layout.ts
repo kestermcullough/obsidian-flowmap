@@ -1,4 +1,4 @@
-import dagre from '@dagrejs/dagre';
+import { graphlib, layout as dagreLayout } from '@dagrejs/dagre';
 import { Edge, Node } from '@xyflow/react';
 import { FlowDirection } from './types';
 
@@ -6,7 +6,7 @@ const DEFAULT_NODE_WIDTH = 220;
 const DEFAULT_NODE_HEIGHT = 92;
 
 export function layoutWithDagre(nodes: Node[], edges: Edge[], direction: FlowDirection = 'LR'): Node[] {
-  const graph = new dagre.graphlib.Graph();
+  const graph = new graphlib.Graph();
   graph.setDefaultEdgeLabel(() => ({}));
   graph.setGraph({ rankdir: direction, nodesep: 60, ranksep: 90, marginx: 30, marginy: 30 });
 
@@ -18,7 +18,7 @@ export function layoutWithDagre(nodes: Node[], edges: Edge[], direction: FlowDir
   });
 
   edges.forEach((edge) => graph.setEdge(edge.source, edge.target));
-  dagre.layout(graph);
+  dagreLayout(graph);
 
   return nodes.map((node) => {
     const p = graph.node(node.id);

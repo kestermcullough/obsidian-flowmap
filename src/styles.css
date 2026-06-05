@@ -69,7 +69,8 @@
   width: min(340px, 34%);
   border-left: 1px solid var(--background-modifier-border);
   padding: 0.75rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: var(--background-secondary);
 }
 
@@ -84,11 +85,13 @@
 .flowmap-details-title {
   font-weight: 700;
   font-size: 1.05em;
+  overflow-wrap: anywhere;
 }
 
 .flowmap-details-subtitle {
   color: var(--text-muted);
   font-size: 0.85em;
+  overflow-wrap: anywhere;
 }
 
 .flowmap-details-text {
@@ -98,17 +101,31 @@
   border: 1px solid var(--background-modifier-border);
   border-radius: 6px;
   padding: 0.5rem;
+  overflow-wrap: anywhere;
 }
 
 .flowmap-details dl {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
   gap: 0.25rem 0.75rem;
 }
 
 .flowmap-details dt {
   color: var(--text-muted);
   font-weight: 600;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.flowmap-details dd {
+  min-width: 0;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.flowmap-details a {
+  overflow-wrap: anywhere;
 }
 
 .flowmap-error {

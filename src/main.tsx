@@ -1,6 +1,5 @@
 import { MarkdownRenderChild, Notice, Plugin } from 'obsidian';
 import { createRoot, Root } from 'react-dom/client';
-import React from 'react';
 import { parseFlowMap } from './parser';
 import { FlowMapEmbed } from './components/FlowMapEmbed';
 import '@xyflow/react/dist/style.css';
@@ -50,6 +49,7 @@ export default class FlowMapPlugin extends Plugin {
             doc={parsed.doc}
             source={source}
             sourcePath={ctx.sourcePath}
+            getSourceSection={() => ctx.getSectionInfo(el)}
           />,
         );
       });

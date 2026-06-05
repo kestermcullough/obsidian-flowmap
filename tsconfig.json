@@ -14,5 +14,5 @@
     "lib": ["DOM", "ES2018"],
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "esbuild.config.mjs"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "esbuild.config.mjs"]
 }

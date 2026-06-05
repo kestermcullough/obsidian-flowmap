@@ -8,7 +8,7 @@ export function flowMapToReactFlow(doc: FlowMapDocument): { nodes: Node[]; edges
     source: edge.from,
     target: edge.to,
     label: edge.label,
-    data: edge,
+    data: { ...edge },
     markerEnd: { type: MarkerType.ArrowClosed },
   }));
 

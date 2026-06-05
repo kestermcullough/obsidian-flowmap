@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   Background,
   Controls,
@@ -18,6 +18,7 @@ import { flowMapToReactFlow, updateDocLayoutFromNodes } from '../convert';
 import { layoutWithDagre } from '../layout';
 import { stringifyFlowMap } from '../parser';
 import { replaceFlowMapBlock } from '../obsidianWriteback';
+import type { FlowMapBlockSection } from '../flowMapBlockReplace';
 import { FlowMapNode } from './FlowMapNode';
 import { DetailsPanel } from './DetailsPanel';
 
@@ -28,6 +29,7 @@ interface FlowMapEmbedProps {
   doc: FlowMapDocument;
   source: string;
   sourcePath: string;
+  getSourceSection?: () => FlowMapBlockSection | null;
 }
 
 export function FlowMapEmbed(props: FlowMapEmbedProps) {
@@ -38,7 +40,7 @@ export function FlowMapEmbed(props: FlowMapEmbedProps) {
   );
 }
 
-function FlowMapCanvas({ app, doc, source, sourcePath }: FlowMapEmbedProps) {
+function FlowMapCanvas({ app, doc, source, sourcePath, getSourceSection }: FlowMapEmbedProps) {
   const initial = useMemo(() => flowMapToReactFlow(doc), [doc]);
   const [nodes, setNodes, onNodesChangeBase] = useNodesState(initial.nodes);
   const [edges] = useEdgesState(initial.edges);
@@ -62,11 +64,11 @@ function FlowMapCanvas({ app, doc, source, sourcePath }: FlowMapEmbedProps) {
   const saveLayout = useCallback(async () => {
     try {
       const updatedDoc = updateDocLayoutFromNodes(doc, nodes);
-      await replaceFlowMapBlock(app, sourcePath, source, stringifyFlowMap(updatedDoc));
+      await replaceFlowMapBlock(app, sourcePath, source, stringifyFlowMap(updatedDoc), getSourceSection?.() ?? null);
     } catch (error) {
       new Notice(error instanceof Error ? error.message : String(error));
     }
-  }, [app, doc, nodes, source, sourcePath]);
+  }, [app, doc, getSourceSection, nodes, source, sourcePath]);
 
   const focusSelected = useCallback(() => {
     if (!selectedNode) return;

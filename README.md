@@ -95,6 +95,12 @@ The code avoids vault-wide scanning, Dataview, or automatic graph extraction. Th
 
 See [`docs/flowmap-format.md`](docs/flowmap-format.md).
 
+## LLM authoring
+
+FlowMap YAML is intended to be renderer-neutral. The Obsidian plugin renders fenced `flowmap` blocks, but the same evidence-backed YAML can also be emitted as raw YAML, summarized Markdown, or a Mermaid fallback.
+
+See [`docs/flowmap-authoring.md`](docs/flowmap-authoring.md) and [`docs/project-flowmap-prompt.md`](docs/project-flowmap-prompt.md).
+
 ## Codex handoff
 
 See [`docs/codex-handoff.md`](docs/codex-handoff.md).
